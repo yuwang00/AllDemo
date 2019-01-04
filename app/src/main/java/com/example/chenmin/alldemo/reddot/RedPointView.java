@@ -57,6 +57,8 @@ public class RedPointView extends View {
 
     private Paint mPaint;
 
+    private RectF mRectF;
+
     public RedPointView(Context context) {
         super(context);
     }
@@ -84,17 +86,17 @@ public class RedPointView extends View {
         //如果文字为空，就显示红点，显示在控件左侧
         if (TextUtils.isEmpty(mShowText)) {
             cy = canvas.getHeight() >> 1;
-            cx = canvas.getWidth()>>1;
+            cx = canvas.getWidth() >> 1;
             //取最短边作为红点的直径
-            radius = cx>cy?cy:cx;
+            radius = cx > cy ? cy : cx;
             //如果不想左侧则改变前两个参数
             canvas.drawCircle(radius, cy, radius, mPaint);
         } else {
 
             if (mShowText.length() <= mShowTextLength) {
                 cy = canvas.getHeight() >> 1;
-                cx = canvas.getWidth()>>1;
-                radius = cx>cy?cy:cx;
+                cx = canvas.getWidth() >> 1;
+                radius = cx > cy ? cy : cx;
                 canvas.drawCircle(radius, cy, radius, mPaint);
 
                 mPaint.setColor(getTextColor());
@@ -108,8 +110,11 @@ public class RedPointView extends View {
                 //画个圆角矩形，不想画成半圆修改此处
                 cy = canvas.getHeight() >> 1;
                 cx = cy;
-                RectF rectF = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
-                canvas.drawRoundRect(rectF, cx, cy, mPaint);
+                //如果宽高改变了则改变红点绘制的矩形
+                if (mRectF == null || mRectF.right != canvas.getWidth() || mRectF.bottom != canvas.getHeight()) {
+                    mRectF = new RectF(0, 0, canvas.getWidth(), canvas.getHeight());
+                }
+                canvas.drawRoundRect(mRectF, cx, cy, mPaint);
 
 
                 mPaint.setColor(getTextColor());
@@ -126,7 +131,6 @@ public class RedPointView extends View {
     }
 
     /**
-     *
      * @param showText 显示的文字
      */
     public void show(String showText) {
@@ -164,10 +168,15 @@ public class RedPointView extends View {
 
     public void setTextColor(int textColor) {
         this.mTextColor = textColor;
+        invalidate();
     }
 
     public void setTextSize(float size) {
         mTextSize = size;
+    }
+
+    public void setTextMaxLength(int textMaxLength) {
+        this.mShowTextLength = textMaxLength;
     }
 
     /**
