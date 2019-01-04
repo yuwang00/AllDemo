@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.chenmin.alldemo.reddot.RedPointView
+        android:id="@+id/rd_red_dot"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#D8BFD8"
+        android:gravity="center"
+        android:text="显示" />
+
+    <TextView
+        android:id="@+id/tv_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:background="#D8BFD8"
+        android:gravity="center"
+        android:text="消失" />
+</LinearLayout>
