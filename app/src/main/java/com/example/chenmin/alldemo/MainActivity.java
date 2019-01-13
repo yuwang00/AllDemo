@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.chenmin.alldemo.reddot.RedDotDemoActivity;
+import com.example.chenmin.alldemo.slidingtabstrip.SlidingTabStripDemoActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView mRedDotTv;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView(){
         mRedDotTv = findViewById(R.id.tv_red_dot);
         mRedDotTv.setOnClickListener(this);
+
+        findViewById(R.id.tv_tab).setOnClickListener(this);
     }
 
 
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.tv_red_dot:
                 startActivity(new Intent(this, RedDotDemoActivity.class));
+                break;
+            case R.id.tv_tab:
+                startActivity(new Intent(this, SlidingTabStripDemoActivity.class));
                 break;
             default:
                 break;
